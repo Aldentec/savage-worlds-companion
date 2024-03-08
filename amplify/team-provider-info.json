@@ -17,6 +17,12 @@
       },
       "storage": {
         "swcompanion": {}
+      },
+      "api": {
+        "swcharactercompanion": {}
+      },
+      "hosting": {
+        "S3AndCloudFront": {}
       }
     }
   }

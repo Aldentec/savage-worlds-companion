@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, DropdownButton, Dropdown, Button } from 'react-bootstrap';
+import { Form, DropdownButton, Dropdown } from 'react-bootstrap';
 import generateDefaultNPC from './Scripts/GenerateDefaultNPC';
 import generateBossNPC from './Scripts/GenerateBossNPC';
 import generateLegendaryNPC from './Scripts/GenerateLegendaryNPC';
@@ -20,15 +20,6 @@ export const NPCGenerator = () => {
     } else if (npcType === 'legendary') {
       generateLegendaryNPC().then((generatedLegendaryNPC) => { setLegendaryNPCData(generatedLegendaryNPC); setSelectedNPCType('legendary'); });
     }
-  };
-
-
-  const handleInputChange = (e) => {
-    // Logic to handle input changes and update NPC data state
-  };
-
-  const saveNPC = () => {
-    // Logic to save NPC data
   };
 
   return (
