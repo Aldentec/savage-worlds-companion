@@ -1,0 +1,10 @@
+{
+  "resourceName": "swcompanion",
+  "tableName": "characters",
+  "partitionKey": {
+    "fieldName": "characterId",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}
