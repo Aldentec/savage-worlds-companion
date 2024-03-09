@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Form, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Form, DropdownButton, Dropdown, Button } from 'react-bootstrap';
 import { generateNPC } from './Scripts/GenerateNPC';
 import GeneratedNPCDetails from './GeneratedNPCDetails';
+import saveNPCToDynamoDB from '../../../Scripts/DynamoDB';
 
 const NPCGenerator = () => {
   const [npcData, setNPCData] = useState(null);
@@ -29,8 +30,53 @@ const NPCGenerator = () => {
       })
       .catch((error) => console.error(error));
   };
-  
 
+  const saveNPC = () => {
+    let npcToSave = null;
+    switch (selectedNPCType) {
+      case 'Default':
+        npcToSave = formatNPCData(npcData);
+        break;
+      case 'Boss':
+        npcToSave = formatNPCData(bossNPCData);
+        break;
+      case 'Legendary':
+        npcToSave = formatNPCData(legendaryNPCData);
+        break;
+      default:
+        break;
+    }
+    // Call the function to save NPC to DynamoDB
+    saveNPCToDynamoDB(npcToSave)
+      .then(() => console.log('NPC saved successfully'))
+      .catch((error) => console.error('Error saving NPC:', error));
+  };
+  
+  const formatNPCData = (npcData) => {
+    const formattedNPCData = { ...npcData };
+  
+    // Ensure race is formatted as a string
+    formattedNPCData.race = String(formattedNPCData.race);
+  
+    // Format attributes
+    const formattedAttributes = {};
+    for (const attributeId in npcData.attributes) {
+      formattedAttributes[attributeId] = npcData.attributes[attributeId].value;
+    }
+  
+    // Format skills
+    const formattedSkills = {};
+    for (const skillId in npcData.skills) {
+      formattedSkills[skillId] = npcData.skills[skillId].value;
+    }
+  
+    formattedNPCData.attributes = formattedAttributes;
+    formattedNPCData.skills = formattedSkills;
+  
+    return formattedNPCData;
+  };
+  
+  
   return (
     <div>
       <Form>
@@ -40,7 +86,7 @@ const NPCGenerator = () => {
           <Dropdown.Item onClick={() => handleNPCGeneration('Legendary')}>Legendary NPC</Dropdown.Item>
         </DropdownButton>
         <br />
-        {/* <Button variant="success" onClick={saveNPC}>Save NPC</Button> */}
+        <Button variant="success" onClick={saveNPC}>Save NPC</Button> {/* Add the save button */}
       </Form>
       {selectedNPCType === 'Default' && npcData && <GeneratedNPCDetails npcData={npcData} />}
       {selectedNPCType === 'Boss' && bossNPCData && <GeneratedNPCDetails npcData={bossNPCData} />}

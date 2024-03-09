@@ -66,6 +66,7 @@ const SignIn = ({ onCloseModal, onSignInSuccess }) => {
             onChange={handleInputChange}
           />
         </Form.Group>
+        <br />
         <Button variant="primary" type="submit">
           Sign In
         </Button>

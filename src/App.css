@@ -41,16 +41,26 @@
 
 /* Custom CSS for Vintage 90s Style */
 
+:root {
+  --dark-yellow: #dfca5a;
+  --light-yellow: #fffeca;
+  --light-green: #d0eaab;
+  --light-grey: #ccc;
+  --dark-pink: #ca5bbd;
+  --light-pink: #fdcaf7;
+}
+
 /* Body Styles */
 body {
-  background-color: #f7765a;
+  background-color: var(--light-green);
   color: #141414;
   font-family: 'Courier New', Courier, monospace; /* Retro font */
 }
 
 /* Navbar Styles */
 .navbar {
-  background-color: #ffe28a !important;
+  background-color: var(--dark-yellow) !important;
+  box-shadow: 0px 1px 5px #333;
 }
 
 .navbar-brand {
@@ -65,37 +75,36 @@ body {
 }
 
 .navbar-nav .nav-link:hover {
-  color: #6fcb9f !important; /* Yellow */
+  color: var(--dark-yellow);
 }
 
 /* Button Styles */
 .btn {
-  background-color: #fffeb3; /* Light yellow */
+  background-color: var(--light-yellow);
   color: #454545;
   border: none;
 }
 
 .btn:hover {
-  background-color: #ffe28a; /* Yellow */
+  background-color: var(--light-pink);
   color: #454545;
 }
 
 /* Form Styles */
 .form-control {
-  background-color: #f7765a !important; /* Light pink */
   color: #141414 !important; /* Dark gray */
 }
 
 /* Input Styles */
 input[type="text"], input[type="password"], input[type="email"], input[type="tel"] {
-  background-color: #fffeb3 !important; /* Light pink */
+  background-color: var(--light-pink);
   color: #141414 !important; /* Dark gray */
-  border: 1px solid #ffe5b0 !important; /* Light yellow */
+  border: 1px solid var(--light-yellow)
 }
 
 /* Footer Styles */
 .footer {
-  background-color: #fffeb3;
+  background-color: var(--dark-yellow);
   color: #454545;
   text-align: center;
   padding: 20px 0;
@@ -103,6 +112,10 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 
 .nav-link {
   margin-right: 20px; /* Adjusts the space between navigation links */
+}
+
+.nav-link:hover {
+  color: var(--dark-pink) !important;
 }
 
 .user-greeting {
@@ -116,3 +129,6 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
   padding-left: 5px; /* Optional: Adjusts space between the username and the Logout link */
 }
 
+.modal-content {
+  background-color: var(--light-pink);
+}

@@ -104,15 +104,15 @@ const SignUpPage = ({ onSignUpSuccess, onCloseModal }) => {
           </Form.Group>
           <Form.Group controlId="formEmail">
             <Form.Label>Email</Form.Label>
-            <Form.Control type="email" name="email" placeholder="Enter email" value={formData.email} onChange={handleInputChange} />
+            <Form.Control type="email" name="email" placeholder="emailer@website.com" value={formData.email} onChange={handleInputChange} />
           </Form.Group>
           <Form.Group controlId="formName">
             <Form.Label>Name</Form.Label>
-            <Form.Control type="text" name="name" placeholder="Enter name" value={formData.name} onChange={handleInputChange} />
+            <Form.Control type="text" name="name" placeholder="Joe Dohn" value={formData.name} onChange={handleInputChange} />
           </Form.Group>
           <Form.Group controlId="formPhoneNumber">
             <Form.Label>Phone Number</Form.Label>
-            <Form.Control type="tel" name="phone_number" placeholder="Enter phone number" value={formData.phone_number} onChange={handleInputChange} />
+            <Form.Control type="tel" name="phone_number" placeholder="+15551234456" value={formData.phone_number} onChange={handleInputChange} />
           </Form.Group>
           <br />
           <Button variant="primary" type="submit">Sign Up</Button>

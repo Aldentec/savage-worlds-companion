@@ -45,6 +45,7 @@ const App = () => {
         onOpenSignIn={handleOpenSignIn} // Passing the new handler
       />
       <Container className="my-5">
+        <h4>WEBSITE CURRENTLY UNDER CONSTRUCTION</h4>
         <h1>Welcome to the Savage Worlds Character Creator!</h1>
         <Button variant="primary" onClick={handleOpenCharacterCreator}>Start Creating Your Character</Button>
       </Container>
