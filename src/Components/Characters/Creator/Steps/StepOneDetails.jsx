@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Form, Modal } from 'react-bootstrap';
 import { races } from '../../../../Constants/CharacterOptions';
 
-export const StepOneNameRace = ({ characterData, handleInputChange }) => {
+export const StepOneDetails = ({ characterData, handleInputChange }) => {
   const [localState, setLocalState] = useState({
     name: '',
     race: '',

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { Button, Modal, Form } from 'react-bootstrap';
-import { StepOneNameRace } from './Steps/StepOneNameRace';
+import { Button, Modal } from 'react-bootstrap';
+import { StepOneDetails } from './Steps/StepOneDetails';
 import { StepTwoAttributes } from './Steps/StepTwoAttributes';
 import { StepThreeEdgesHindrances } from './Steps/StepThreeEdgesHindrances';
 import { StepFourGear } from './Steps/StepFourGear';
 import { StepFiveReviewAndSave } from './Steps/StepFiveReviewAndSave';
 
 
-export const CreationWizard = () => {
+const CreationWizard = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [isStepOneValid, setIsStepOneValid] = useState(false);
     const [isStepThreeValid, setIsStepThreeValid] = useState(false);
@@ -53,7 +53,7 @@ export const CreationWizard = () => {
     const renderStep = () => {
         switch (currentStep) {
             case 1:
-                return <StepOneNameRace characterData={characterData} handleInputChange={handleInputChange} />;
+                return <StepOneDetails characterData={characterData} handleInputChange={handleInputChange} />;
             case 2:
                 return <StepTwoAttributes characterData={characterData} handleInputChange={handleInputChange} />;
             case 3:
@@ -91,3 +91,5 @@ export const CreationWizard = () => {
         </>
     );
 };
+
+export default CreationWizard;

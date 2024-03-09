@@ -9,24 +9,29 @@ export const createNPC = /* GraphQL */ `
     createNPC(input: $input, condition: $condition) {
       id
       name
-      description
       race
-      attributes {
-        agility
-        smarts
-        spirit
-        strength
-        vigor
+      attributes
+      skills
+      edges {
+        id
+        name
+        description
+        __typename
       }
-      skills {
-        skillId
-        level
+      hindrances {
+        id
+        name
+        description
+        __typename
       }
       gear {
-        weapon
-        armor
-        item
+        id
+        name
+        description
+        __typename
       }
+      money
+      personalityTraits
       createdAt
       updatedAt
       __typename
@@ -41,24 +46,29 @@ export const updateNPC = /* GraphQL */ `
     updateNPC(input: $input, condition: $condition) {
       id
       name
-      description
       race
-      attributes {
-        agility
-        smarts
-        spirit
-        strength
-        vigor
+      attributes
+      skills
+      edges {
+        id
+        name
+        description
+        __typename
       }
-      skills {
-        skillId
-        level
+      hindrances {
+        id
+        name
+        description
+        __typename
       }
       gear {
-        weapon
-        armor
-        item
+        id
+        name
+        description
+        __typename
       }
+      money
+      personalityTraits
       createdAt
       updatedAt
       __typename
@@ -73,24 +83,29 @@ export const deleteNPC = /* GraphQL */ `
     deleteNPC(input: $input, condition: $condition) {
       id
       name
-      description
       race
-      attributes {
-        agility
-        smarts
-        spirit
-        strength
-        vigor
+      attributes
+      skills
+      edges {
+        id
+        name
+        description
+        __typename
       }
-      skills {
-        skillId
-        level
+      hindrances {
+        id
+        name
+        description
+        __typename
       }
       gear {
-        weapon
-        armor
-        item
+        id
+        name
+        description
+        __typename
       }
+      money
+      personalityTraits
       createdAt
       updatedAt
       __typename

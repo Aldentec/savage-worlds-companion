@@ -40,15 +40,41 @@ export const hindrances = [
 ];
 
 export const skills = [
+  { id: "academics", name: "Academics" },
+  { id: "athletics", name: "Athletics" },
+  { id: "common_know", name: "Common Know" },
+  { id: "driving", name: "Driving" },
+  { id: "electronics", name: "Electronics" },
   { id: "fighting", name: "Fighting" },
-  { id: "shooting", name: "Shooting" },
+  { id: "hacking", name: "Hacking" },
+  { id: "healing", name: "Healing" },
+  { id: "intimidation", name: "Intimidation" },
+  { id: "language", name: "Language" },
+  { id: "notice", name: "Notice" },
+  { id: "occult", name: "Occult" },
+  { id: "performance", name: "Performance" },
+  { id: "piloting", name: "Piloting" },
   { id: "persuasion", name: "Persuasion" },
+  { id: "repair", name: "Repair" },
+  { id: "research", name: "Research" },
+  { id: "riding", name: "Riding" },
+  { id: "science", name: "Science" },
+  { id: "shooting", name: "Shooting" },
   { id: "stealth", name: "Stealth" },
   { id: "survival", name: "Survival" },
-  { id: "knowledge", name: "Knowledge" },
-  { id: "athletics", name: "Athletics" },
+  { id: "taunt", name: "Taunt" },
   { id: "thievery", name: "Thievery" },
-  { id: "riding", name: "Riding" },
+];
+
+export const powers = [
+  { id: "fireball", name: "Fireball", description: "Launches a ball of fire towards enemies, dealing area damage." },
+  { id: "telekinesis", name: "Telekinesis", description: "Moves objects with the power of the mind, allowing for manipulation from a distance." },
+  { id: "invisibility", name: "Invisibility", description: "Renders the user invisible to sight, allowing for stealthy movement." },
+  { id: "healing", name: "Healing", description: "Restores health and vitality to the user or allies." },
+  { id: "flight", name: "Flight", description: "Grants the ability to fly through the air with ease." },
+  { id: "teleportation", name: "Teleportation", description: "Instantly transports the user from one location to another." },
+  { id: "shapeshifting", name: "Shapeshifting", description: "Allows the user to change their form into that of another creature." },
+  { id: "mindControl", name: "Mind Control", description: "Takes control of the minds of others, bending them to the user's will." },
 ];
 
 export const gearOptions = {

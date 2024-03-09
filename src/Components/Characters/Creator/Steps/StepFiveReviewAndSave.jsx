@@ -1,16 +1,8 @@
 import React from 'react';
-import { Button, ListGroup, Modal } from 'react-bootstrap';
+import { ListGroup, Modal } from 'react-bootstrap';
 import { races, edges, hindrances, gearOptions, moneyOptions } from '../../../../Constants/CharacterOptions';
 
 export const StepFiveReviewAndSave = ({ characterData }) => {
-  // Function to find the gear's name and description by its ID across all categories
-  const findGearById = (id) => {
-    for (const category in gearOptions) {
-      const found = gearOptions[category].find(gear => gear.id === id);
-      if (found) return `${found.name}: ${found.description}`;
-    }
-    return 'Unknown';
-  };
 
   const displayGearByCategory = (gearIds, category) => {
     return gearIds.map(gearId => {

@@ -1,47 +1,23 @@
-import './App.css'
+import './App.css';
 import React, { useState } from 'react';
 import { Amplify } from 'aws-amplify';
-import { Container, Button, Navbar, Nav, Modal } from 'react-bootstrap';
+import { Container, Button, Modal } from 'react-bootstrap';
 import { CharacterCreationProvider } from './Context/CharacterCreationContext';
-import { CreationWizard } from './Components/Characters/Creator/CreationWizard';
-import { NPCGenerator } from './Components/NPCs/Generator/NPCGenerator';
+import CreationWizard from './Components/Characters/Creator/CreationWizard';
+import NPCGenerator from './Components/NPCs/Generator/NPCGenerator';
 import SignUpPage from './Components/Utils/SignUp';
+import SignIn from './Components/Utils/SignIn'; // Assuming you've created this
+import Navigation from './Components/Utils/Navigation';
 
-import awsconfig from './aws-exports'; // Path to your aws-exports.js file
+import awsconfig from './aws-exports';
 Amplify.configure(awsconfig);
-
-const HomePage = ({ onOpenCharacterCreator, onOpenNPCGenerator, onOpenSignUp }) => { // Add onOpenNPCGenerator to the props
-  return (
-    <>
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">Savage Worlds Companion</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            {/* Add other navigation links as needed */}
-            <Nav.Link onClick={onOpenCharacterCreator}>Character Creator</Nav.Link>
-            <Nav.Link onClick={onOpenNPCGenerator}>NPC Generator</Nav.Link>
-            <Nav.Link onClick={onOpenSignUp}>Sign Up</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-
-      <Container className="my-5">
-        <h1>Welcome to the Savage Worlds Character Creator!</h1>
-        <p className="lead">Create your unique character for any Savage Worlds adventure.</p>
-        <p>Start by giving your character a name, choosing their race, and customizing their attributes, edges, and hindrances.</p>
-        <Button variant="primary" onClick={onOpenCharacterCreator}>Start Creating Your Character</Button>
-      </Container>
-      
-    </>
-  );
-};
 
 const App = () => {
   const [showCreator, setShowCreator] = useState(false);
   const [showNPCGenerator, setShowNPCGenerator] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(false); // New state for the SignIn modal
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
 
   const handleOpenCharacterCreator = () => setShowCreator(true);
   const handleCloseCharacterCreator = () => setShowCreator(false);
@@ -52,13 +28,27 @@ const App = () => {
   const handleOpenSignUp = () => setShowSignUp(true);
   const handleCloseSignUp = () => setShowSignUp(false);
 
+  const handleOpenSignIn = () => setShowSignIn(true); // New handler for opening SignIn modal
+  const handleCloseSignIn = () => setShowSignIn(false); // New handler for closing SignIn modal
+
+  const handleSignUpSuccess = () => {
+    setShowSuccessAlert(true);
+    handleCloseSignUp();
+  };
+
   return (
     <CharacterCreationProvider>
-      <HomePage 
-        onOpenCharacterCreator={handleOpenCharacterCreator} 
+      <Navigation
+        onOpenCharacterCreator={handleOpenCharacterCreator}
         onOpenNPCGenerator={handleOpenNPCGenerator}
         onOpenSignUp={handleOpenSignUp}
+        onOpenSignIn={handleOpenSignIn} // Passing the new handler
       />
+      <Container className="my-5">
+        <h1>Welcome to the Savage Worlds Character Creator!</h1>
+        <Button variant="primary" onClick={handleOpenCharacterCreator}>Start Creating Your Character</Button>
+      </Container>
+
       <Modal show={showCreator} onHide={handleCloseCharacterCreator} size="lg" backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Character Creation Wizard</Modal.Title>
@@ -67,21 +57,46 @@ const App = () => {
           <CreationWizard />
         </Modal.Body>
       </Modal>
+
       <Modal show={showNPCGenerator} onHide={handleCloseNPCGenerator} size="lg" backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>NPC Generator</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <NPCGenerator /> {/* Render the NPCGenerator component */}
+          <NPCGenerator />
         </Modal.Body>
       </Modal>
+
       <Modal show={showSignUp} onHide={handleCloseSignUp} size="lg" backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
+          <Modal.Title> Sign Up </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <SignUpPage /> {/* Render the NPCGenerator component */}
+          <SignUpPage onSignUpSuccess={handleSignUpSuccess} onCloseModal={handleCloseSignUp} />
         </Modal.Body>
       </Modal>
+
+      <Modal show={showSignIn} onHide={handleCloseSignIn} size="lg" backdrop="static" keyboard={false}>
+        <Modal.Header closeButton>
+          <Modal.Title> Sign In </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <SignIn onCloseModal={handleCloseSignIn} /> {/* Implement this component based on your needs */}
+        </Modal.Body>
+      </Modal>
+
+      {
+        showSuccessAlert && (
+          <div 
+            className="alert alert-success alert-dismissible fade show" 
+            role="alert" 
+            style={{ position: 'fixed', width: '100%', top: '0px', zIndex: '1051' }}
+          >
+            You have signed up successfully!
+            <button type="button" className="btn-close" onClick={() => setShowSuccessAlert(false)} aria-label="Close"></button>
+          </div>
+        )
+      }
     </CharacterCreationProvider>
   );
 };

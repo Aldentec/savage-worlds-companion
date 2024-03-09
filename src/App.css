@@ -101,4 +101,18 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
   padding: 20px 0;
 }
 
-/* Add more custom styles as needed */
+.nav-link {
+  margin-right: 20px; /* Adjusts the space between navigation links */
+}
+
+.user-greeting {
+  margin-left: auto; /* Pushes the greeting section to the far right */
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.user-logout-link {
+  padding-left: 5px; /* Optional: Adjusts space between the username and the Logout link */
+}
+

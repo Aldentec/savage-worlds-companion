@@ -1,29 +1,55 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getTodo = /* GraphQL */ `
-  query GetTodo($id: ID!) {
-    getTodo(id: $id) {
+export const getNPC = /* GraphQL */ `
+  query GetNPC($id: ID!) {
+    getNPC(id: $id) {
       id
       name
-      description
+      race
+      attributes
+      skills
+      edges {
+        id
+        name
+        description
+        __typename
+      }
+      hindrances {
+        id
+        name
+        description
+        __typename
+      }
+      gear {
+        id
+        name
+        description
+        __typename
+      }
+      money
+      personalityTraits
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const listTodos = /* GraphQL */ `
-  query ListTodos(
-    $filter: ModelTodoFilterInput
+export const listNPCS = /* GraphQL */ `
+  query ListNPCS(
+    $filter: ModelNPCFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listNPCS(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
-        description
+        race
+        attributes
+        skills
+        money
+        personalityTraits
         createdAt
         updatedAt
         __typename
