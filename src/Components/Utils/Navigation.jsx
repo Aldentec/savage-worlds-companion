@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
 const Navigation = ({ onOpenCharacterCreator, onOpenNPCGenerator, onOpenSignIn, onOpenSignUp, onLogout }) => {
   const username = localStorage.getItem('username');
@@ -18,6 +18,11 @@ const Navigation = ({ onOpenCharacterCreator, onOpenNPCGenerator, onOpenSignIn, 
         <Nav className="me-auto">
           <Nav.Link onClick={onOpenCharacterCreator}>Character Creator</Nav.Link>
           <Nav.Link onClick={onOpenNPCGenerator}>NPC Generator</Nav.Link>
+          <NavDropdown title="Compendium" id="basic-nav-dropdown">
+            <NavDropdown.Item href="/compendium/edges">Edges</NavDropdown.Item>
+            <NavDropdown.Item href="/compendium/hindrances">Hindrances</NavDropdown.Item>
+            <NavDropdown.Item href="/compendium/items">Items</NavDropdown.Item>
+          </NavDropdown>
           {username ? (
             <>
               <Nav.Item style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>

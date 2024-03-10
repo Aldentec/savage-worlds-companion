@@ -8,6 +8,9 @@ export const getNPC = /* GraphQL */ `
       name
       race
       attributes
+      parry
+      pace
+      toughness
       skills
       edges {
         id
@@ -29,6 +32,16 @@ export const getNPC = /* GraphQL */ `
       }
       money
       personalityTraits
+      background
+      secret
+      height
+      weight
+      powers {
+        id
+        name
+        description
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -47,9 +60,16 @@ export const listNPCS = /* GraphQL */ `
         name
         race
         attributes
+        parry
+        pace
+        toughness
         skills
         money
         personalityTraits
+        background
+        secret
+        height
+        weight
         createdAt
         updatedAt
         __typename

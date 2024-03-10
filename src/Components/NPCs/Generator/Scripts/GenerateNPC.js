@@ -9,6 +9,8 @@ import {
   legendaryGearOptions,
   moneyOptions,
   personalityTraits,
+  backgrounds,
+  secrets,
   powers // assuming you have imported the powers from somewhere
 } from '../../../../Constants/CharacterOptions';
 
@@ -116,22 +118,28 @@ const generateName = () => {
 
 export const generateNPC = (npcType) => {
   return new Promise((resolve, reject) => {
+    const background = generateRandomValue(backgrounds);
+    const secret = generateRandomValue(secrets);
+
     let npc = {
       name: generateName(),
       race: generateRandomValue(races),
       attributes: {},
+      pace: 6,
+      parry: 2,
+      toughness: 2,
       skills: {},
       edges: [],
       hindrances: [],
       gear: {},
       money: {},
       personalityTraits: '',
+      background: background.name,
+      secret: secret.name,
       height: '',
       weight: 0,
       powers: [],
-      pace: 6, // Default Pace value for most characters
-      parry: 2, // Base Parry value, will be updated if Fighting skill exists
-      toughness: 2 // Base Toughness value, will be updated based on Vigor
+     
     };
 
     if (npcType !== 'Default') {
@@ -142,7 +150,7 @@ export const generateNPC = (npcType) => {
     switch(npcType) {
       case 'Default':
         npc.attributes = generateAttributes(["d4", "d6", "d8"]);
-        npc.skills = generateSkills(["d4", "d6"]);
+        npc.skills = generateSkills(["d4", "d6", "d8"]);
         npc.edges = generateEdges(edges);
         npc.hindrances = generateHindrances();
         npc.gear = generateGear(gearOptions);
@@ -153,7 +161,7 @@ export const generateNPC = (npcType) => {
         break;
       case 'Boss':
         npc.attributes = generateAttributes(["d4", "d6", "d8", "d10"]);
-        npc.skills = generateSkills(["d6", "d8"]);
+        npc.skills = generateSkills(["d6", "d8", "d10"]);
         npc.edges = generateEdges(edges);
         npc.hindrances = generateHindrances();
         npc.gear = generateGear(bossGearOptions);
@@ -165,7 +173,7 @@ export const generateNPC = (npcType) => {
         break;
       case 'Legendary':
         npc.attributes = generateAttributes(["d6", "d8", "d10", "d12"]);
-        npc.skills = generateSkills(["d8", "d10", "d12"]);
+        npc.skills = generateSkills(["d6", "d8", "d10", "d12"]);
         npc.edges = generateEdges(edges);
         npc.hindrances = generateHindrances();
         npc.gear = generateGear(legendaryGearOptions);
@@ -191,24 +199,21 @@ export const generateNPC = (npcType) => {
 
     // Calculate Parry based on Fighting skill
     if (npc.skills.fighting) {
-      const fightingDie = parseInt(npc.skills.fighting.substring(1)); // Extracts the numeric part of the die type (e.g., "d6" becomes 6)
+      const fightingDie = parseInt(npc.skills.fighting.substring(1));
       npc.parry = 2 + Math.floor(fightingDie / 2);
     }
 
     // Calculate Toughness based on Vigor
     if (npc.attributes.vigor) {
-      const vigorDie = parseInt(npc.attributes.vigor.substring(1)); // Extracts the numeric part of the die type
+      const vigorDie = parseInt(npc.attributes.vigor.substring(1));
       npc.toughness = 2 + Math.floor(vigorDie / 2);
 
-      // Add armor bonuses to Toughness, assuming your gear data includes a way to define these
       npc.gear.armor.forEach(armor => {
-        // Here, we assume each piece of armor in the array has a `toughnessBonus` attribute.
-        // Adjust according to your actual data structure.
         npc.toughness += armor.toughnessBonus || 0;
       });
     }
 
-
     resolve(npc);
   });
 };
+

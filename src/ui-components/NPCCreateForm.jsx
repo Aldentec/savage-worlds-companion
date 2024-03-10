@@ -193,27 +193,48 @@ export default function NPCCreateForm(props) {
     name: "",
     race: "",
     attributes: "",
+    parry: "",
+    pace: "",
+    toughness: "",
     skills: "",
     money: "",
     personalityTraits: [],
+    background: "",
+    secret: "",
+    height: "",
+    weight: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [race, setRace] = React.useState(initialValues.race);
   const [attributes, setAttributes] = React.useState(initialValues.attributes);
+  const [parry, setParry] = React.useState(initialValues.parry);
+  const [pace, setPace] = React.useState(initialValues.pace);
+  const [toughness, setToughness] = React.useState(initialValues.toughness);
   const [skills, setSkills] = React.useState(initialValues.skills);
   const [money, setMoney] = React.useState(initialValues.money);
   const [personalityTraits, setPersonalityTraits] = React.useState(
     initialValues.personalityTraits
   );
+  const [background, setBackground] = React.useState(initialValues.background);
+  const [secret, setSecret] = React.useState(initialValues.secret);
+  const [height, setHeight] = React.useState(initialValues.height);
+  const [weight, setWeight] = React.useState(initialValues.weight);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
     setRace(initialValues.race);
     setAttributes(initialValues.attributes);
+    setParry(initialValues.parry);
+    setPace(initialValues.pace);
+    setToughness(initialValues.toughness);
     setSkills(initialValues.skills);
     setMoney(initialValues.money);
     setPersonalityTraits(initialValues.personalityTraits);
     setCurrentPersonalityTraitsValue("");
+    setBackground(initialValues.background);
+    setSecret(initialValues.secret);
+    setHeight(initialValues.height);
+    setWeight(initialValues.weight);
     setErrors({});
   };
   const [currentPersonalityTraitsValue, setCurrentPersonalityTraitsValue] =
@@ -223,9 +244,16 @@ export default function NPCCreateForm(props) {
     name: [{ type: "Required" }],
     race: [],
     attributes: [{ type: "JSON" }],
+    parry: [],
+    pace: [],
+    toughness: [],
     skills: [{ type: "JSON" }],
     money: [],
     personalityTraits: [],
+    background: [],
+    secret: [],
+    height: [],
+    weight: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -256,9 +284,16 @@ export default function NPCCreateForm(props) {
           name,
           race,
           attributes,
+          parry,
+          pace,
+          toughness,
           skills,
           money,
           personalityTraits,
+          background,
+          secret,
+          height,
+          weight,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -324,9 +359,16 @@ export default function NPCCreateForm(props) {
               name: value,
               race,
               attributes,
+              parry,
+              pace,
+              toughness,
               skills,
               money,
               personalityTraits,
+              background,
+              secret,
+              height,
+              weight,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -353,9 +395,16 @@ export default function NPCCreateForm(props) {
               name,
               race: value,
               attributes,
+              parry,
+              pace,
+              toughness,
               skills,
               money,
               personalityTraits,
+              background,
+              secret,
+              height,
+              weight,
             };
             const result = onChange(modelFields);
             value = result?.race ?? value;
@@ -381,9 +430,16 @@ export default function NPCCreateForm(props) {
               name,
               race,
               attributes: value,
+              parry,
+              pace,
+              toughness,
               skills,
               money,
               personalityTraits,
+              background,
+              secret,
+              height,
+              weight,
             };
             const result = onChange(modelFields);
             value = result?.attributes ?? value;
@@ -398,6 +454,114 @@ export default function NPCCreateForm(props) {
         hasError={errors.attributes?.hasError}
         {...getOverrideProps(overrides, "attributes")}
       ></TextAreaField>
+      <TextField
+        label="Parry"
+        isRequired={false}
+        isReadOnly={false}
+        value={parry}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              race,
+              attributes,
+              parry: value,
+              pace,
+              toughness,
+              skills,
+              money,
+              personalityTraits,
+              background,
+              secret,
+              height,
+              weight,
+            };
+            const result = onChange(modelFields);
+            value = result?.parry ?? value;
+          }
+          if (errors.parry?.hasError) {
+            runValidationTasks("parry", value);
+          }
+          setParry(value);
+        }}
+        onBlur={() => runValidationTasks("parry", parry)}
+        errorMessage={errors.parry?.errorMessage}
+        hasError={errors.parry?.hasError}
+        {...getOverrideProps(overrides, "parry")}
+      ></TextField>
+      <TextField
+        label="Pace"
+        isRequired={false}
+        isReadOnly={false}
+        value={pace}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              race,
+              attributes,
+              parry,
+              pace: value,
+              toughness,
+              skills,
+              money,
+              personalityTraits,
+              background,
+              secret,
+              height,
+              weight,
+            };
+            const result = onChange(modelFields);
+            value = result?.pace ?? value;
+          }
+          if (errors.pace?.hasError) {
+            runValidationTasks("pace", value);
+          }
+          setPace(value);
+        }}
+        onBlur={() => runValidationTasks("pace", pace)}
+        errorMessage={errors.pace?.errorMessage}
+        hasError={errors.pace?.hasError}
+        {...getOverrideProps(overrides, "pace")}
+      ></TextField>
+      <TextField
+        label="Toughness"
+        isRequired={false}
+        isReadOnly={false}
+        value={toughness}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              race,
+              attributes,
+              parry,
+              pace,
+              toughness: value,
+              skills,
+              money,
+              personalityTraits,
+              background,
+              secret,
+              height,
+              weight,
+            };
+            const result = onChange(modelFields);
+            value = result?.toughness ?? value;
+          }
+          if (errors.toughness?.hasError) {
+            runValidationTasks("toughness", value);
+          }
+          setToughness(value);
+        }}
+        onBlur={() => runValidationTasks("toughness", toughness)}
+        errorMessage={errors.toughness?.errorMessage}
+        hasError={errors.toughness?.hasError}
+        {...getOverrideProps(overrides, "toughness")}
+      ></TextField>
       <TextAreaField
         label="Skills"
         isRequired={false}
@@ -409,9 +573,16 @@ export default function NPCCreateForm(props) {
               name,
               race,
               attributes,
+              parry,
+              pace,
+              toughness,
               skills: value,
               money,
               personalityTraits,
+              background,
+              secret,
+              height,
+              weight,
             };
             const result = onChange(modelFields);
             value = result?.skills ?? value;
@@ -438,9 +609,16 @@ export default function NPCCreateForm(props) {
               name,
               race,
               attributes,
+              parry,
+              pace,
+              toughness,
               skills,
               money: value,
               personalityTraits,
+              background,
+              secret,
+              height,
+              weight,
             };
             const result = onChange(modelFields);
             value = result?.money ?? value;
@@ -463,9 +641,16 @@ export default function NPCCreateForm(props) {
               name,
               race,
               attributes,
+              parry,
+              pace,
+              toughness,
               skills,
               money,
               personalityTraits: values,
+              background,
+              secret,
+              height,
+              weight,
             };
             const result = onChange(modelFields);
             values = result?.personalityTraits ?? values;
@@ -513,6 +698,150 @@ export default function NPCCreateForm(props) {
           {...getOverrideProps(overrides, "personalityTraits")}
         ></TextField>
       </ArrayField>
+      <TextField
+        label="Background"
+        isRequired={false}
+        isReadOnly={false}
+        value={background}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              race,
+              attributes,
+              parry,
+              pace,
+              toughness,
+              skills,
+              money,
+              personalityTraits,
+              background: value,
+              secret,
+              height,
+              weight,
+            };
+            const result = onChange(modelFields);
+            value = result?.background ?? value;
+          }
+          if (errors.background?.hasError) {
+            runValidationTasks("background", value);
+          }
+          setBackground(value);
+        }}
+        onBlur={() => runValidationTasks("background", background)}
+        errorMessage={errors.background?.errorMessage}
+        hasError={errors.background?.hasError}
+        {...getOverrideProps(overrides, "background")}
+      ></TextField>
+      <TextField
+        label="Secret"
+        isRequired={false}
+        isReadOnly={false}
+        value={secret}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              race,
+              attributes,
+              parry,
+              pace,
+              toughness,
+              skills,
+              money,
+              personalityTraits,
+              background,
+              secret: value,
+              height,
+              weight,
+            };
+            const result = onChange(modelFields);
+            value = result?.secret ?? value;
+          }
+          if (errors.secret?.hasError) {
+            runValidationTasks("secret", value);
+          }
+          setSecret(value);
+        }}
+        onBlur={() => runValidationTasks("secret", secret)}
+        errorMessage={errors.secret?.errorMessage}
+        hasError={errors.secret?.hasError}
+        {...getOverrideProps(overrides, "secret")}
+      ></TextField>
+      <TextField
+        label="Height"
+        isRequired={false}
+        isReadOnly={false}
+        value={height}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              race,
+              attributes,
+              parry,
+              pace,
+              toughness,
+              skills,
+              money,
+              personalityTraits,
+              background,
+              secret,
+              height: value,
+              weight,
+            };
+            const result = onChange(modelFields);
+            value = result?.height ?? value;
+          }
+          if (errors.height?.hasError) {
+            runValidationTasks("height", value);
+          }
+          setHeight(value);
+        }}
+        onBlur={() => runValidationTasks("height", height)}
+        errorMessage={errors.height?.errorMessage}
+        hasError={errors.height?.hasError}
+        {...getOverrideProps(overrides, "height")}
+      ></TextField>
+      <TextField
+        label="Weight"
+        isRequired={false}
+        isReadOnly={false}
+        value={weight}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              race,
+              attributes,
+              parry,
+              pace,
+              toughness,
+              skills,
+              money,
+              personalityTraits,
+              background,
+              secret,
+              height,
+              weight: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.weight ?? value;
+          }
+          if (errors.weight?.hasError) {
+            runValidationTasks("weight", value);
+          }
+          setWeight(value);
+        }}
+        onBlur={() => runValidationTasks("weight", weight)}
+        errorMessage={errors.weight?.errorMessage}
+        hasError={errors.weight?.hasError}
+        {...getOverrideProps(overrides, "weight")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

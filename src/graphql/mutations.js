@@ -11,6 +11,9 @@ export const createNPC = /* GraphQL */ `
       name
       race
       attributes
+      parry
+      pace
+      toughness
       skills
       edges {
         id
@@ -32,6 +35,16 @@ export const createNPC = /* GraphQL */ `
       }
       money
       personalityTraits
+      background
+      secret
+      height
+      weight
+      powers {
+        id
+        name
+        description
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -48,6 +61,9 @@ export const updateNPC = /* GraphQL */ `
       name
       race
       attributes
+      parry
+      pace
+      toughness
       skills
       edges {
         id
@@ -69,6 +85,16 @@ export const updateNPC = /* GraphQL */ `
       }
       money
       personalityTraits
+      background
+      secret
+      height
+      weight
+      powers {
+        id
+        name
+        description
+        __typename
+      }
       createdAt
       updatedAt
       __typename
@@ -85,6 +111,9 @@ export const deleteNPC = /* GraphQL */ `
       name
       race
       attributes
+      parry
+      pace
+      toughness
       skills
       edges {
         id
@@ -106,6 +135,16 @@ export const deleteNPC = /* GraphQL */ `
       }
       money
       personalityTraits
+      background
+      secret
+      height
+      weight
+      powers {
+        id
+        name
+        description
+        __typename
+      }
       createdAt
       updatedAt
       __typename

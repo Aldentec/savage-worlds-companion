@@ -25,17 +25,31 @@ export declare type NPCUpdateFormInputValues = {
     name?: string;
     race?: string;
     attributes?: string;
+    parry?: string;
+    pace?: string;
+    toughness?: string;
     skills?: string;
     money?: string;
     personalityTraits?: string[];
+    background?: string;
+    secret?: string;
+    height?: string;
+    weight?: string;
 };
 export declare type NPCUpdateFormValidationValues = {
     name?: ValidationFunction<string>;
     race?: ValidationFunction<string>;
     attributes?: ValidationFunction<string>;
+    parry?: ValidationFunction<string>;
+    pace?: ValidationFunction<string>;
+    toughness?: ValidationFunction<string>;
     skills?: ValidationFunction<string>;
     money?: ValidationFunction<string>;
     personalityTraits?: ValidationFunction<string>;
+    background?: ValidationFunction<string>;
+    secret?: ValidationFunction<string>;
+    height?: ValidationFunction<string>;
+    weight?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type NPCUpdateFormOverridesProps = {
@@ -43,9 +57,16 @@ export declare type NPCUpdateFormOverridesProps = {
     name?: PrimitiveOverrideProps<TextFieldProps>;
     race?: PrimitiveOverrideProps<TextFieldProps>;
     attributes?: PrimitiveOverrideProps<TextAreaFieldProps>;
+    parry?: PrimitiveOverrideProps<TextFieldProps>;
+    pace?: PrimitiveOverrideProps<TextFieldProps>;
+    toughness?: PrimitiveOverrideProps<TextFieldProps>;
     skills?: PrimitiveOverrideProps<TextAreaFieldProps>;
     money?: PrimitiveOverrideProps<TextFieldProps>;
     personalityTraits?: PrimitiveOverrideProps<TextFieldProps>;
+    background?: PrimitiveOverrideProps<TextFieldProps>;
+    secret?: PrimitiveOverrideProps<TextFieldProps>;
+    height?: PrimitiveOverrideProps<TextFieldProps>;
+    weight?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type NPCUpdateFormProps = React.PropsWithChildren<{
     overrides?: NPCUpdateFormOverridesProps | undefined | null;

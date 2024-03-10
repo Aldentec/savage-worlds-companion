@@ -27,7 +27,7 @@ const GeneratedNPCDetails = ({ npcData }) => {
 
   return (
     <div className="savage-worlds-character-sheet">
-      <h2 className="text-center">Savage Worlds Character Sheet</h2>
+      <br />
       <Row className="justify-content-center">
         <Col md={6}>
           <ListGroup>
@@ -35,10 +35,19 @@ const GeneratedNPCDetails = ({ npcData }) => {
               <strong>Name:</strong> {npcData.name}
             </ListGroup.Item>
             <ListGroup.Item>
+              <strong>Race:</strong> {npcData.race.name}
+            </ListGroup.Item>
+            <ListGroup.Item>
               <strong>NPC Type:</strong> {determineNPCType()}
             </ListGroup.Item>
             <ListGroup.Item>
-              <strong>Race:</strong> {npcData.race.name}
+              <strong>Background:</strong> {npcData.background}
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <strong>Secret:</strong> {npcData.secret}
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <strong>Personality Traits:</strong> {npcData.personalityTraits}
             </ListGroup.Item>
             <ListGroup.Item>
               <strong>Height:</strong> {npcData.height}
@@ -106,9 +115,6 @@ const GeneratedNPCDetails = ({ npcData }) => {
                   </ul>
                 </div>
               ))}
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>Personality Traits:</strong> {npcData.personalityTraits}
             </ListGroup.Item>
             <ListGroup.Item>
               <strong>Powers:</strong>

@@ -2,8 +2,8 @@ const AWS = require('aws-sdk');
 const { v4: uuidv4 } = require('uuid');
 
 AWS.config.update({
-  accessKeyId: 'AKIAQK3ACGCR6ZKHZ3FS',
-  secretAccessKey: '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',
+  accessKeyId: '',
+  secretAccessKey: '',
   region: 'us-west-2'
 });
 
@@ -21,7 +21,20 @@ const saveNPCToDynamoDB = (npcData) => {
       name: { S: npcData.name },
       race: { S: npcData.race },
       attributes: { M: npcData.attributes },
+      parry: { S: npcData.parry },
+      pace: { S: npcData.pace },
+      toughness: { S: npcData.toughness },
       skills: { M: npcData.skills },
+      edges: { M: npcData.edges },
+      hindrances: { M: npcData.hindrances },
+      gear: { M: npcData.gear },
+      money: { S: npcData.money },
+      personalityTraits: { M: npcData.personalityTraits },
+      background: { S: npcData.background },
+      secret: { S: npcData.secret },
+      height: { S: npcData.height },
+      weight: { S: npcData.weight },
+      powers: { M: npcData.powers },
     },
   };
 

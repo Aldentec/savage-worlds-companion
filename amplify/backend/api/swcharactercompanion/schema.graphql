@@ -3,12 +3,20 @@ type NPC @model {
   name: String!
   race: String
   attributes: AWSJSON
+  parry: String
+  pace: String
+  toughness: String
   skills: AWSJSON
   edges: [Edge]   # Define the type Edge
   hindrances: [Hindrance]   # Define the type Hindrance
   gear: [Gear]   # Define the type Gear
   money: String
   personalityTraits: [String]
+  background: String
+  secret: String
+  height: String
+  weight: String
+  powers: [Powers]
 }
 
 type Edge {
@@ -29,3 +37,8 @@ type Gear {
   description: String
 }
 
+type Powers {
+  id: ID!
+  name: String!
+  description: String
+}
